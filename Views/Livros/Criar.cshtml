@@ -1,0 +1,76 @@
+﻿@model BibliotecaSenai.Models.Livro
+
+@{
+    ViewData["Title"] = "Novo Livro";
+}
+
+<div class="container py-4">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="card border-0 shadow-sm">
+                <div class="card-header bg-primary text-white py-3">
+                    <h5 class="card-title mb-0">Cadastrar Novo Livro</h5>
+                </div>
+                <div class="card-body p-4">
+                    <form asp-action="Criar">
+                        <div asp-validation-summary="ModelOnly" class="alert alert-danger" role="alert"></div>
+
+                        <div class="mb-3">
+                            <label asp-for="Titulo" class="form-label fw-semibold">Título do Livro</label>
+                            <input asp-for="Titulo" class="form-control" placeholder="Ex: A Batalha do Apocalipse" />
+                            <span asp-validation-for="Titulo" class="text-danger small"></span>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="AnoPublicacao" class="form-label fw-semibold">Ano de Publicação</label>
+                                <input asp-for="AnoPublicacao" class="form-control" type="number" placeholder="2024" />
+                                <span asp-validation-for="AnoPublicacao" class="text-danger small"></span>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="Preco" class="form-label fw-semibold">Preço (R$)</label>
+                                <input asp-for="Preco" class="form-control" type="number" step="0.01" placeholder="00,00" />
+                                <span asp-validation-for="Preco" class="text-danger small"></span>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-4 mb-3">
+                                <label asp-for="AutorId" class="form-label fw-semibold">Autor</label>
+                                <select asp-for="AutorId" class="form-select" asp-items="ViewBag.AutorId">
+                                    <option value="">-- Selecione --</option>
+                                </select>
+                                <span asp-validation-for="AutorId" class="text-danger small"></span>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label asp-for="CategoriaId" class="form-label fw-semibold">Categoria</label>
+                                <select asp-for="CategoriaId" class="form-select" asp-items="ViewBag.CategoriaId">
+                                    <option value="">-- Selecione --</option>
+                                </select>
+                                <span asp-validation-for="CategoriaId" class="text-danger small"></span>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label asp-for="EditoraId" class="form-label fw-semibold">Editora</label>
+                                <select asp-for="EditoraId" class="form-select" asp-items="ViewBag.EditoraId">
+                                    <option value="">-- Selecione --</option>
+                                </select>
+                                <span asp-validation-for="EditoraId" class="text-danger small"></span>
+                            </div>
+                        </div>
+
+                        <div class="d-flex justify-content-between align-items-center mt-4 pt-3 border-top">
+                            <a asp-action="Index" class="btn btn-outline-secondary">Cancelar</a>
+                            <button type="submit" class="btn btn-primary px-4">Salvar Registro</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

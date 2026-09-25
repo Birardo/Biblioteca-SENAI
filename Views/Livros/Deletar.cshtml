@@ -1,0 +1,49 @@
+﻿@model BibliotecaSenai.Models.Livro
+
+@{
+    ViewData["Title"] = "Confirmar Exclusão";
+}
+
+<div class="container py-4">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card border-danger shadow-sm">
+                <div class="card-header bg-danger text-white py-3">
+                    <h5 class="card-title mb-0">Confirmar Exclusão</h5>
+                </div>
+                <div class="card-body p-4">
+                    <div class="alert alert-warning" role="alert">
+                        <strong>Atenção!</strong> Você está prestes a remover o livro abaixo permanentemente.
+                    </div>
+
+                    <dl class="row mb-0">
+                        <dt class="col-sm-4 text-muted">Título:</dt>
+                        <dd class="col-sm-8 fw-bold">@Model.Titulo</dd>
+
+                        <dt class="col-sm-4 text-muted">Autor:</dt>
+                        <dd class="col-sm-8">@(Model.Autor?.Nome ?? "N/A")</dd>
+
+                        <dt class="col-sm-4 text-muted">Categoria:</dt>
+                        <dd class="col-sm-8">@(Model.Categoria?.Nome ?? "N/A")</dd>
+
+                        <dt class="col-sm-4 text-muted">Editora:</dt>
+                        <dd class="col-sm-8">@(Model.Editora?.Nome ?? "N/A")</dd>
+
+                        <dt class="col-sm-4 text-muted">Ano:</dt>
+                        <dd class="col-sm-8">@Model.AnoPublicacao</dd>
+
+                        <dt class="col-sm-4 text-muted">Preço:</dt>
+                        <dd class="col-sm-8 text-success fw-bold">@Model.Preco.ToString("C")</dd>
+                    </dl>
+                </div>
+                <div class="card-footer bg-light d-flex justify-content-between align-items-center py-3">
+                    <a asp-action="Index" class="btn btn-outline-secondary">Cancelar</a>
+                    <form asp-action="Delete">
+                        <input type="hidden" asp-for="Id" />
+                        <button type="submit" class="btn btn-danger px-4">Confirmar Exclusão</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
